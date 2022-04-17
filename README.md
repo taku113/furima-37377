@@ -11,26 +11,29 @@
 | family_name           | string   | null: false |
 | first_name_kana       | string   | null: false |
 | family_name_kana      | string   | null: false |
-| birthday              | datetime | null: false |
+| birthday              | date     | null: false |
 
 ### Association
 
 - has_many : items
-- has_many : purchase
+- has_many : purchases
 
 
 ## itemsテーブル
 
-| Column                | Type    | Options     |
-| --------------------- | ------- | ----------- |
-| item_name             | string  | null: false |
-| explanation           | text    | null: false |
-| category_id           | integer | null: false |
-| condition_id          | integer | null: false |
-| postage_id            | integer | null: false |
-| delivery_area_id      | integer | null: false |
-| delivery_time_id      | integer | null: false |
-| seller                | string  | null: false |
+| Column                | Type       | Options     |
+| --------------------- | ---------- | ----------- |
+| item_name             | string     | null: false |
+| explanation           | text       | null: false |
+| category_id           | integer    | null: false |
+| condition_id          | integer    | null: false |
+| postage_id            | integer    | null: false |
+| prefecture_id         | integer    | null: false |
+| delivery_time_id      | integer    | null: false |
+| nickname_id           | references | null: false |
+| price                 | integer    | null: false |
+| commission            | integer    | null: false |
+| benefit               | integer    | null: false |
 
 
 ### Association
@@ -40,14 +43,10 @@
 
 ## purchasesテーブル
 
-| Column                | Type   | Options     |
-| --------------------- | ------ | ----------- |
-| shipment source       | string | null: false |
-| delivery time         | string | null: false |
-| price                 | string | null: false |
-| commission            | string | null: false |
-| benefit               | string | null: false |
-| seller                | string | null: false |
+| Column                | Type    | Options     |
+| --------------------- | ------- | ----------- |
+| nickname_id           | integer | null: false |
+| item_name_id          | integer | null: false |
 
 
 
@@ -72,3 +71,4 @@
 
 
 ### Association
+- belongs_to : shipment

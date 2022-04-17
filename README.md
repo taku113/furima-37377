@@ -2,15 +2,16 @@
 
 ## usersテーブル
 
-| Column                | Type   | Options     |
-| --------------------- | ------ | ----------- |
-| nickname              | string | null: false |
-| e-mail                | string | null: false |
-| password              | string | null: false |
-| password confirmation | string | null: false |
-| name                  | string | null: false |
-| name-kana             | string | null: false |
-| birthday              | string | null: false |
+| Column                | Type     | Options     |
+| --------------------- | -------- | ----------- |
+| nickname              | string   | null: false |
+| email                 | string   | null: false, unique : true |
+| encrypted_password    | string   | null: false |
+| first_name            | string   | null: false |
+| family_name           | string   | null: false |
+| first_name_kana       | string   | null: false |
+| family_name_kana      | string   | null: false |
+| birthday              | datetime | null: false |
 
 ### Association
 
@@ -20,23 +21,24 @@
 
 ## itemsテーブル
 
-| Column                | Type   | Options     |
-| --------------------- | ------ | ----------- |
-| item-name             | string | null: false |
-| image                 | string | null: false |
-| explanation           | string | null: false |
-| category              | string | null: false |
-| condition             | string | null: false |
-| postage               | string | null: false |
+| Column                | Type    | Options     |
+| --------------------- | ------- | ----------- |
+| item_name             | string  | null: false |
+| explanation           | text    | null: false |
+| category_id           | integer | null: false |
+| condition_id          | integer | null: false |
+| postage_id            | integer | null: false |
+| delivery_area_id      | integer | null: false |
+| delivery_time_id      | integer | null: false |
+| seller                | string  | null: false |
 
 
 ### Association
 
 - belongs_to : user
-- belongs_to : purchase
-- belongs_to : shipment
+- has_one : purchase
 
-## purchaseテーブル
+## purchasesテーブル
 
 | Column                | Type   | Options     |
 | --------------------- | ------ | ----------- |
@@ -53,25 +55,20 @@
 
 - belongs_to : user
 - belongs_to : item
-- belongs_to : shipment
+- has_one : shipment
 
 
 ## Shipmentsテーブル
 
-| Column                | Type   | Options     |
-| --------------------- | -------| ------------|
-| delivery address      | string | null: false |
-| postal code           | string | null: false |
-| prefecture            | string | null: false |
-| city                  | string | null: false |
-| address               | string | null: false |
-| building name         | string |             |
-| phone number          | string | null: false |
-| buyer                 | string | null: false |
+| Column                | Type    | Options     |
+| --------------------- | --------| ------------|
+| postal_code           | string  | null: false |
+| prefecture_id         | integer | null: false |
+| city                  | string  | null: false |
+| address               | string  | null: false |
+| building_name         | string  |             |
+| phone_number          | string  | null: false |
+| buyer                 | references  | null: false, foreign_key: true |
 
 
 ### Association
-
-- belongs_to : user
-- belongs_to : item
-- belongs_to : purchase

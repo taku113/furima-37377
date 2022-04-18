@@ -30,7 +30,7 @@
 | postage_id            | integer    | null: false |
 | prefecture_id         | integer    | null: false |
 | delivery_time_id      | integer    | null: false |
-| nickname_id           | references | null: false, foreign_key: true |
+| user_id               | references | null: false, foreign_key: true |
 | price                 | integer    | null: false |
 
 

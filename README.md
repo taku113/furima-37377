@@ -15,8 +15,8 @@
 
 ### Association
 
-- has_many : items
-- has_many : purchases
+- has_many :items
+- has_many :purchases
 
 
 ## itemsテーブル
@@ -30,31 +30,29 @@
 | postage_id            | integer    | null: false |
 | prefecture_id         | integer    | null: false |
 | delivery_time_id      | integer    | null: false |
-| nickname_id           | references | null: false |
+| nickname_id           | references | null: false, foreign_key: true |
 | price                 | integer    | null: false |
-| commission            | integer    | null: false |
-| benefit               | integer    | null: false |
 
 
 ### Association
 
-- belongs_to : user
-- has_one : purchase
+- belongs_to :user
+- has_one :purchase
 
 ## purchasesテーブル
 
-| Column                | Type    | Options     |
-| --------------------- | ------- | ----------- |
-| nickname_id           | integer | null: false |
-| item_name_id          | integer | null: false |
+| Column                | Type       | Options     |
+| --------------------- | ---------- | ----------- |
+| user_id           | references | null: false, foreign_key: true |
+| item_id          | references | null: false, foreign_key: true |
 
 
 
 ### Association
 
-- belongs_to : user
-- belongs_to : item
-- has_one : shipment
+- belongs_to :user
+- belongs_to :item
+- has_one :shipment
 
 
 ## Shipmentsテーブル
@@ -67,8 +65,8 @@
 | address               | string  | null: false |
 | building_name         | string  |             |
 | phone_number          | string  | null: false |
-| buyer                 | references  | null: false, foreign_key: true |
+| user_id           | references  | null: false, foreign_key: true |
 
 
 ### Association
-- belongs_to : shipment
+- belongs_to :shipment

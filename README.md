@@ -69,4 +69,4 @@
 
 
 ### Association
-- belongs_to :shipment
+- belongs_to :purchase

@@ -8,7 +8,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.integer :postage_id
       t.integer :prefecture_id
       t.integer :delivery_time_id
-      t.references :user_id
+      t.references :user_id, foreign_key: true
       t.integer :price
       t.timestamps
     end

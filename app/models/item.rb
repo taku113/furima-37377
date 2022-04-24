@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category, :condition, :postage, :prefecture, :deryvery_time 
+  has_one_attached :image
 
   validates :item_name, presence: true, length: { maximum: 40}
   validates :explanation, presence: true, length: { maximum: 1000}

@@ -1,7 +1,13 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category, :condition, :postage, :prefecture, :deryvery_time 
+  belongs_to :category
+  belongs_to :condition
+  belongs_to :postage
+  belongs_to :prefecture
+  belongs_to :delivery_time
+  belongs_to :user 
   has_one_attached :image
+  # has_one :purchace
 
   validates :item_name, presence: true, length: { maximum: 40}
   validates :explanation, presence: true, length: { maximum: 1000}
@@ -10,7 +16,6 @@ class Item < ApplicationRecord
   validates :postage_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
   validates :prefecture_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
   validates :delivery_time_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :user_id, presence: true
   validates :image, presence: true
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 9_999_999 },
   format: { with: /\A[0-9]+\z/ }

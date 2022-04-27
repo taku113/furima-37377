@@ -12,6 +12,7 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
     end
+    
     context '商品情報が保存できない場合' do
       it "商品画像が空では登録できない" do
         @item.image = nil

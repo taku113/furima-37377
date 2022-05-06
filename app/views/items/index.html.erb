@@ -158,9 +158,7 @@
         <% end %>
       </li>
       
-      <% @items.each do |item| %>
-        <% if item.image = nil %>
-      
+        <% if @item.nil? %>
           <li class='list'>
             <%= link_to '#' do %>
             <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
@@ -179,7 +177,6 @@
            <% end %>
           </li>
         <% end %>
-      <% end %>
 
     </ul>
   </div>

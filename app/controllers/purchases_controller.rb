@@ -14,6 +14,7 @@ class PurchasesController < ApplicationController
     else
       reder :new
     end
+  end
 
     private
 

@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   belongs_to :delivery_time
   belongs_to :user 
   has_one_attached :image
-  # has_one :purchace
+  has_one :purchace
 
   validates :item_name, presence: true, length: { maximum: 40}
   validates :explanation, presence: true, length: { maximum: 1000}

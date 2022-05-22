@@ -64,10 +64,10 @@ ActiveRecord::Schema.define(version: 2022_05_12_112258) do
     t.string "address", null: false
     t.string "building_name"
     t.string "phone_number", null: false
-    t.bigint "user_id"
+    t.bigint "purchase_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_shipments_on_user_id"
+    t.index ["purchase_id"], name: "index_shipments_on_purchase_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -92,5 +92,5 @@ ActiveRecord::Schema.define(version: 2022_05_12_112258) do
   add_foreign_key "items", "users"
   add_foreign_key "purchases", "items"
   add_foreign_key "purchases", "users"
-  add_foreign_key "shipments", "users"
+  add_foreign_key "shipments", "purchases"
 end

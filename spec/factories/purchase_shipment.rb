@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :shipment do
+  factory :purchase_shipment do
     postal_code {"123-4567"}
     prefecture_id {"2"}
     city {Faker::Lorem.sentence}

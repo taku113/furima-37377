@@ -17,6 +17,6 @@ class PurchaseShipment
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
     # 配送情報を保存する
     # purchase_idには、変数purchaseのidと指定する
-    Shipment.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, address: address, building_name: building_name, phone_number: phone_number, purchace_id: purchase.id)
+    Shipment.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, address: address, building_name: building_name, phone_number: phone_number, purchase_id: purchase.id)
   end
 end

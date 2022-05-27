@@ -7,10 +7,15 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    binding.pry
     @item = Item.find(params[:item_id])
     @purchase_shipment = PurchaseShipment.new(purchase_params)
     if @purchase_shipment.valid?
+      Payjp.api_key = "sk_test_5b23ecb45b4205b86781e3e2"  # PAY.JPテスト秘密鍵
+      Payjp::Charge.create(
+        amount: @item.price,  # 商品の値段
+        card: purchase_params[:token],    # カードトークン
+        currency: 'jpy'                 # 通貨の種類（日本円）
+      )
       @purchase_shipment.save
       redirect_to root_path
     else

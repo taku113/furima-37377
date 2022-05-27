@@ -15,6 +15,12 @@ RSpec.describe PurchaseShipment, type: :model do
     end
 
     context '商品購入できない場合' do
+      it "tokenが空では登録できないこと" do
+        @purchase_shipment.token = nil
+        @purchase_shipment.valid?
+        expect(@purchase_shipment.errors.full_messages).to include("Token can't be blank")
+      end
+
       it "postal_codeが空では購入できない" do
         @purchase_shipment.postal_code = nil
         @purchase_shipment.valid?

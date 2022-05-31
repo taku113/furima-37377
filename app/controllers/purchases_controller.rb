@@ -5,8 +5,12 @@ class PurchasesController < ApplicationController
 
   def index
     #フォームオブジェクトのインスタンスを生成し、インスタンス変数に代入する
+    
     @purchase_shipment = PurchaseShipment.new
     @item = Item.find(params[:item_id])
+    if @item.purchase != nil
+      redirect_to root_path
+    end
   end
 
   def create

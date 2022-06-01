@@ -10,8 +10,14 @@ RSpec.describe PurchaseShipment, type: :model do
   describe '商品購入' do
     context '商品購入できる場合' do
       it "building_name以外の情報が存在すれば登録できる" do
+        @purchase_shipment.building_name = nil
         expect(@purchase_shipment).to be_valid
       end
+
+      it "全ての項目が入力されていれば購入できる" do
+      expect(@purchase_shipment).to be_valid
+      end
+
     end
 
     context '商品購入できない場合' do
@@ -58,15 +64,21 @@ RSpec.describe PurchaseShipment, type: :model do
       end
 
       it "電話番号に数値以外の値が入っていると保存できない" do
-        @purchase_shipment.phone_number = '090-234-678'
+        @purchase_shipment.phone_number = '090@234@678'
         @purchase_shipment.valid?
-        expect(@purchase_shipment.errors.full_messages).to include("Phone number is not a number")
+        expect(@purchase_shipment.errors.full_messages).to include("Phone number is invalid")
       end
 
-      it "電話番号が10桁以上11桁以内の場合は保存できない" do
-        @purchase_shipment.phone_number = '090-1234-5678'
+      it "電話番号が9桁以下では購入できない" do
+        @purchase_shipment.phone_number = '090-1234'
         @purchase_shipment.valid?
-        expect(@purchase_shipment.errors.full_messages).to include("Phone number is not a number")
+        expect(@purchase_shipment.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it "電話番号が12桁以上では購入できない" do
+        @purchase_shipment.phone_number = '090-1234-567891023'
+        @purchase_shipment.valid?
+        expect(@purchase_shipment.errors.full_messages).to include("Phone number is invalid")
       end
     end
   end

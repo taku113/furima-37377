@@ -2,19 +2,18 @@ class PurchasesController < ApplicationController
 
   before_action :authenticate_user!, only: [:index, :create ]
   before_action :move_to_index, only: [:index ]
+  before_action :item_params
 
   def index
     #フォームオブジェクトのインスタンスを生成し、インスタンス変数に代入する
     
     @purchase_shipment = PurchaseShipment.new
-    @item = Item.find(params[:item_id])
     if @item.purchase != nil
       redirect_to root_path
     end
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @purchase_shipment = PurchaseShipment.new(purchase_params)
     if @purchase_shipment.valid?
       @purchase_shipment.save
@@ -45,4 +44,9 @@ class PurchasesController < ApplicationController
         redirect_to controller: :items, action: :index
       end
     end
+
+    def item_params
+      @item = Item.find(params[:item_id])
+    end
+
 end

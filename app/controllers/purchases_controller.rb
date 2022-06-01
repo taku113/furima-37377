@@ -1,8 +1,8 @@
 class PurchasesController < ApplicationController
 
   before_action :authenticate_user!, only: [:index, :create ]
-  before_action :move_to_index, only: [:index ]
   before_action :item_params
+  before_action :move_to_index, only: [:index ]
 
   def index
     #フォームオブジェクトのインスタンスを生成し、インスタンス変数に代入する
@@ -40,7 +40,6 @@ class PurchasesController < ApplicationController
     end
 
     def move_to_index
-      @item = Item.find(params[:item_id])
       if @item.user.id == current_user.id
         redirect_to controller: :items, action: :index
       end

@@ -70,13 +70,13 @@ RSpec.describe PurchaseShipment, type: :model do
       end
 
       it "電話番号が9桁以下では購入できない" do
-        @purchase_shipment.phone_number = '090-1234'
+        @purchase_shipment.phone_number = '090123'
         @purchase_shipment.valid?
         expect(@purchase_shipment.errors.full_messages).to include("Phone number is invalid")
       end
 
       it "電話番号が12桁以上では購入できない" do
-        @purchase_shipment.phone_number = '090-1234-567891023'
+        @purchase_shipment.phone_number = '090123456789102311111'
         @purchase_shipment.valid?
         expect(@purchase_shipment.errors.full_messages).to include("Phone number is invalid")
       end

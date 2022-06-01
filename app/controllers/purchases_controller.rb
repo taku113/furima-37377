@@ -16,6 +16,7 @@ class PurchasesController < ApplicationController
   def create
     @purchase_shipment = PurchaseShipment.new(purchase_params)
     if @purchase_shipment.valid?
+      pay_item
       @purchase_shipment.save
       redirect_to root_path
     else
